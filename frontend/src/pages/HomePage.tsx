@@ -8,8 +8,8 @@ interface BlogPost {
   id: bigint;
   title: string;
   content: string;
-  createdAt: number;
-  updatedAt: number | null;
+  createdAt: bigint;
+  updatedAt: bigint | null;
 }
 
 const HomePage: React.FC = () => {

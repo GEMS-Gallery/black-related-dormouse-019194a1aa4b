@@ -9,15 +9,15 @@ interface BlogPost {
   id: bigint;
   title: string;
   content: string;
-  createdAt: number;
-  updatedAt: number | null;
+  createdAt: bigint;
+  updatedAt: bigint | null;
 }
 
 interface Comment {
   id: bigint;
   postId: bigint;
   content: string;
-  createdAt: number;
+  createdAt: bigint;
 }
 
 interface CommentFormData {

@@ -36,7 +36,7 @@ actor {
       id;
       title;
       content;
-      createdAt = Int.abs(Time.now() / 1000000);
+      createdAt = Time.now();
       updatedAt = null;
     };
     blogPosts := Array.append(blogPosts, [(id, post)]);
@@ -64,7 +64,7 @@ actor {
           id;
           postId;
           content;
-          createdAt = Int.abs(Time.now() / 1000000);
+          createdAt = Time.now();
         };
         comments := Array.append(comments, [(id, comment)]);
         nextCommentId += 1;
