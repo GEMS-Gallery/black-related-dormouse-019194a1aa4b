@@ -75,7 +75,7 @@ const BlogPostPage: React.FC = () => {
           {post.title}
         </Typography>
         <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-          {new Date(Number(post.createdAt) / 1000000).toLocaleString()}
+          {new Date(Number(post.createdAt) / 1000000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </Typography>
         <Typography variant="body1" paragraph>
           {post.content}
@@ -90,7 +90,7 @@ const BlogPostPage: React.FC = () => {
         <Paper key={comment.id.toString()} elevation={2} sx={{ p: 2, mb: 2 }}>
           <Typography variant="body1">{comment.content}</Typography>
           <Typography variant="caption" color="text.secondary">
-            {new Date(Number(comment.createdAt) / 1000000).toLocaleString()}
+            {new Date(Number(comment.createdAt) / 1000000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </Typography>
         </Paper>
       ))}

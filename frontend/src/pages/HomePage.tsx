@@ -35,8 +35,8 @@ const HomePage: React.FC = () => {
               <Typography variant="h5" component="div">
                 {post.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {new Date(Number(post.createdAt) / 1000000).toLocaleDateString()}
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                {new Date(Number(post.createdAt) / 1000000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </Typography>
               <Typography variant="body1" sx={{ mt: 2, mb: 2 }}>
                 {post.content.substring(0, 100)}...
