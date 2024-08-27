@@ -71,14 +71,14 @@ const BlogPostPage: React.FC = () => {
 
   return (
     <Box>
-      <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
+      <Paper elevation={0} sx={{ p: 3, mb: 3, border: '1px solid #e0e0e0' }}>
+        <Typography variant="h4" component="h1" gutterBottom color="text.primary">
           {post.title}
         </Typography>
         <Typography
           variant="body2"
           sx={{
-            color: '#888',
+            color: 'text.secondary',
             fontSize: '0.75rem',
             fontStyle: 'italic',
             mb: 1
@@ -86,22 +86,22 @@ const BlogPostPage: React.FC = () => {
         >
           {formatDate(post.createdAt)}
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1" paragraph color="text.primary">
           {post.content}
         </Typography>
       </Paper>
 
-      <Typography variant="h5" component="h2" gutterBottom>
+      <Typography variant="h5" component="h2" gutterBottom color="text.primary">
         Comments
       </Typography>
 
       {comments.map((comment) => (
-        <Paper key={comment.id.toString()} elevation={2} sx={{ p: 2, mb: 2 }}>
-          <Typography variant="body1">{comment.content}</Typography>
+        <Paper key={comment.id.toString()} elevation={0} sx={{ p: 2, mb: 2, border: '1px solid #e0e0e0' }}>
+          <Typography variant="body1" color="text.primary">{comment.content}</Typography>
           <Typography
             variant="caption"
             sx={{
-              color: '#888',
+              color: 'text.secondary',
               fontSize: '0.7rem',
               fontStyle: 'italic',
               mt: 1,
@@ -115,7 +115,7 @@ const BlogPostPage: React.FC = () => {
 
       <Divider sx={{ my: 3 }} />
 
-      <Typography variant="h6" component="h3" gutterBottom>
+      <Typography variant="h6" component="h3" gutterBottom color="text.primary">
         Add a Comment
       </Typography>
 

@@ -28,10 +28,10 @@ const CreatePostPage: React.FC = () => {
 
   return (
     <Box>
-      <Typography variant="h4" component="h1" gutterBottom>
+      <Typography variant="h4" component="h1" gutterBottom color="text.primary">
         Create New Blog Post
       </Typography>
-      <Paper elevation={3} sx={{ p: 3 }}>
+      <Paper elevation={0} sx={{ p: 3, border: '1px solid #e0e0e0' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="title"

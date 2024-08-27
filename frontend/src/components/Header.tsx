@@ -4,15 +4,15 @@ import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
 const Header: React.FC = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="transparent" elevation={0} sx={{ borderBottom: '1px solid #e0e0e0' }}>
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'text.primary' }}>
           IC Blog
         </Typography>
-        <Button color="inherit" component={RouterLink} to="/">
+        <Button color="inherit" component={RouterLink} to="/" sx={{ color: 'text.primary' }}>
           Home
         </Button>
-        <Button color="inherit" component={RouterLink} to="/create">
+        <Button color="inherit" component={RouterLink} to="/create" sx={{ color: 'text.primary' }}>
           Create Post
         </Button>
       </Toolbar>
