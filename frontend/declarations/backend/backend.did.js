@@ -1,17 +1,16 @@
 export const idlFactory = ({ IDL }) => {
   const Result = IDL.Variant({ 'ok' : IDL.Nat, 'err' : IDL.Text });
-  const Time = IDL.Int;
   const BlogPost = IDL.Record({
     'id' : IDL.Nat,
     'title' : IDL.Text,
     'content' : IDL.Text,
-    'createdAt' : Time,
-    'updatedAt' : IDL.Opt(Time),
+    'createdAt' : IDL.Int,
+    'updatedAt' : IDL.Opt(IDL.Int),
   });
   const Comment = IDL.Record({
     'id' : IDL.Nat,
     'content' : IDL.Text,
-    'createdAt' : Time,
+    'createdAt' : IDL.Int,
     'postId' : IDL.Nat,
   });
   return IDL.Service({

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
 import { backend } from 'declarations/backend';
+import { formatDate } from '../utils/dateFormatter';
 
 interface BlogPost {
   id: bigint;
@@ -35,8 +36,16 @@ const HomePage: React.FC = () => {
               <Typography variant="h5" component="div">
                 {post.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                {new Date(Number(post.createdAt) / 1000000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <Typography
+                variant="body2"
+                sx={{
+                  color: 'text.secondary',
+                  fontSize: '0.875rem',
+                  fontStyle: 'italic',
+                  mb: 1
+                }}
+              >
+                {formatDate(post.createdAt)}
               </Typography>
               <Typography variant="body1" sx={{ mt: 2, mb: 2 }}>
                 {post.content.substring(0, 100)}...

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Typography, Paper, Box, Divider, TextField, Button } from '@mui/material';
 import { backend } from 'declarations/backend';
 import { useForm, Controller } from 'react-hook-form';
+import { formatDate } from '../utils/dateFormatter';
 
 interface BlogPost {
   id: bigint;
@@ -74,8 +75,16 @@ const BlogPostPage: React.FC = () => {
         <Typography variant="h4" component="h1" gutterBottom>
           {post.title}
         </Typography>
-        <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-          {new Date(Number(post.createdAt) / 1000000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+            fontSize: '0.875rem',
+            fontStyle: 'italic',
+            mb: 1
+          }}
+        >
+          {formatDate(post.createdAt)}
         </Typography>
         <Typography variant="body1" paragraph>
           {post.content}
@@ -89,8 +98,17 @@ const BlogPostPage: React.FC = () => {
       {comments.map((comment) => (
         <Paper key={comment.id.toString()} elevation={2} sx={{ p: 2, mb: 2 }}>
           <Typography variant="body1">{comment.content}</Typography>
-          <Typography variant="caption" color="text.secondary">
-            {new Date(Number(comment.createdAt) / 1000000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          <Typography
+            variant="caption"
+            sx={{
+              color: 'text.secondary',
+              fontSize: '0.75rem',
+              fontStyle: 'italic',
+              mt: 1,
+              display: 'block'
+            }}
+          >
+            {formatDate(comment.createdAt)}
           </Typography>
         </Paper>
       ))}

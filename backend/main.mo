@@ -14,15 +14,15 @@ actor {
     id: Nat;
     title: Text;
     content: Text;
-    createdAt: Time.Time;
-    updatedAt: ?Time.Time;
+    createdAt: Int;
+    updatedAt: ?Int;
   };
 
   type Comment = {
     id: Nat;
     postId: Nat;
     content: Text;
-    createdAt: Time.Time;
+    createdAt: Int;
   };
 
   stable var nextPostId: Nat = 0;

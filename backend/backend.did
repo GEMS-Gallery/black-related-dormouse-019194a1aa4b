@@ -1,4 +1,3 @@
-type Time = int;
 type Result = 
  variant {
    err: text;
@@ -7,17 +6,17 @@ type Result =
 type Comment = 
  record {
    content: text;
-   createdAt: Time;
+   createdAt: int;
    id: nat;
    postId: nat;
  };
 type BlogPost = 
  record {
    content: text;
-   createdAt: Time;
+   createdAt: int;
    id: nat;
    title: text;
-   updatedAt: opt Time;
+   updatedAt: opt int;
  };
 service : {
   addComment: (nat, text) -> (Result);

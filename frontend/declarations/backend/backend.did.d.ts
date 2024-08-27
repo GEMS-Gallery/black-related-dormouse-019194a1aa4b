@@ -6,18 +6,17 @@ export interface BlogPost {
   'id' : bigint,
   'title' : string,
   'content' : string,
-  'createdAt' : Time,
-  'updatedAt' : [] | [Time],
+  'createdAt' : bigint,
+  'updatedAt' : [] | [bigint],
 }
 export interface Comment {
   'id' : bigint,
   'content' : string,
-  'createdAt' : Time,
+  'createdAt' : bigint,
   'postId' : bigint,
 }
 export type Result = { 'ok' : bigint } |
   { 'err' : string };
-export type Time = bigint;
 export interface _SERVICE {
   'addComment' : ActorMethod<[bigint, string], Result>,
   'createBlogPost' : ActorMethod<[string, string], Result>,
