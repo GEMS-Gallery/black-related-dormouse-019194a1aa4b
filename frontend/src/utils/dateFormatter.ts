@@ -1,6 +1,6 @@
-export const formatDate = (timestamp: bigint) => {
+export const formatDate = (timestamp: number) => {
   try {
-    const date = new Date(Number(timestamp));
+    const date = new Date(timestamp);
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',

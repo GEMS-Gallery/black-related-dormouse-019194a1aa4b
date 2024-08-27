@@ -8,8 +8,8 @@ interface BlogPost {
   id: bigint;
   title: string;
   content: string;
-  createdAt: bigint;
-  updatedAt: bigint | null;
+  createdAt: number;
+  updatedAt: number | null;
 }
 
 const HomePage: React.FC = () => {
@@ -39,8 +39,8 @@ const HomePage: React.FC = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: '#666',
-                  fontSize: '0.8rem',
+                  color: '#888',
+                  fontSize: '0.75rem',
                   fontStyle: 'italic',
                   mb: 1
                 }}

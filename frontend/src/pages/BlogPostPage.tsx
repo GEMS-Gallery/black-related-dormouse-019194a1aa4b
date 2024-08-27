@@ -9,15 +9,15 @@ interface BlogPost {
   id: bigint;
   title: string;
   content: string;
-  createdAt: bigint;
-  updatedAt: bigint | null;
+  createdAt: number;
+  updatedAt: number | null;
 }
 
 interface Comment {
   id: bigint;
   postId: bigint;
   content: string;
-  createdAt: bigint;
+  createdAt: number;
 }
 
 interface CommentFormData {
@@ -78,8 +78,8 @@ const BlogPostPage: React.FC = () => {
         <Typography
           variant="body2"
           sx={{
-            color: '#666',
-            fontSize: '0.8rem',
+            color: '#888',
+            fontSize: '0.75rem',
             fontStyle: 'italic',
             mb: 1
           }}
@@ -101,7 +101,7 @@ const BlogPostPage: React.FC = () => {
           <Typography
             variant="caption"
             sx={{
-              color: '#666',
+              color: '#888',
               fontSize: '0.7rem',
               fontStyle: 'italic',
               mt: 1,
