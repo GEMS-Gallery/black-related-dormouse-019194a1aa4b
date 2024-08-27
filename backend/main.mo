@@ -8,12 +8,15 @@ import Text "mo:base/Text";
 import Int "mo:base/Int";
 import Iter "mo:base/Iter";
 import Option "mo:base/Option";
+import List "mo:base/List";
+import Buffer "mo:base/Buffer";
 
 actor {
   type BlogPost = {
     id: Nat;
     title: Text;
     content: Text;
+    category: Text;
     createdAt: Int;
     updatedAt: ?Int;
   };
@@ -29,19 +32,22 @@ actor {
   stable var nextCommentId: Nat = 0;
   stable var blogPosts: [(Nat, BlogPost)] = [];
   stable var comments: [(Nat, Comment)] = [];
+  stable var categories: List.List<Text> = List.nil();
 
-  public func createBlogPost(title: Text, content: Text): async Result.Result<BlogPost, Text> {
+  public func createBlogPost(title: Text, content: Text, category: Text): async Result.Result<BlogPost, Text> {
     let id = nextPostId;
     let timestamp = Time.now();
     let post: BlogPost = {
       id;
       title;
       content;
+      category;
       createdAt = timestamp;
       updatedAt = null;
     };
     blogPosts := Array.append(blogPosts, [(id, post)]);
     nextPostId += 1;
+    categories := List.push(category, categories);
     #ok(post)
   };
 
@@ -54,6 +60,29 @@ actor {
 
   public query func getAllBlogPosts(): async [BlogPost] {
     Array.map(blogPosts, func(entry: (Nat, BlogPost)) : BlogPost { entry.1 })
+  };
+
+  public query func getPostsByCategory(category: Text): async [BlogPost] {
+    Array.mapFilter(blogPosts, func(entry: (Nat, BlogPost)) : ?BlogPost {
+      if (entry.1.category == category) {
+        ?entry.1
+      } else {
+        null
+      }
+    })
+  };
+
+  public query func getAllCategories(): async [Text] {
+    let uniqueCategories = Buffer.Buffer<Text>(0);
+    let isUnique = func (category: Text) : Bool {
+      not Buffer.contains<Text>(uniqueCategories, category, Text.equal)
+    };
+    List.iterate<Text>(categories, func (category: Text) {
+      if (isUnique(category)) {
+        uniqueCategories.add(category);
+      };
+    });
+    Buffer.toArray(uniqueCategories)
   };
 
   public func addComment(postId: Nat, content: Text): async Result.Result<Comment, Text> {

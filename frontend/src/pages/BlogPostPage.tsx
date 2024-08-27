@@ -9,6 +9,7 @@ interface BlogPost {
   id: bigint;
   title: string;
   content: string;
+  category: string;
   createdAt: bigint;
   updatedAt: bigint | null;
 }
@@ -84,7 +85,7 @@ const BlogPostPage: React.FC = () => {
             mb: 1
           }}
         >
-          {formatDate(post.createdAt)}
+          {formatDate(post.createdAt)} | Category: {post.category}
         </Typography>
         <Typography variant="body1" paragraph color="text.primary">
           {post.content}

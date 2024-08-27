@@ -8,6 +8,7 @@ export interface BlogPost {
   'content' : string,
   'createdAt' : bigint,
   'updatedAt' : [] | [bigint],
+  'category' : string,
 }
 export interface Comment {
   'id' : bigint,
@@ -21,10 +22,12 @@ export type Result_1 = { 'ok' : Comment } |
   { 'err' : string };
 export interface _SERVICE {
   'addComment' : ActorMethod<[bigint, string], Result_1>,
-  'createBlogPost' : ActorMethod<[string, string], Result>,
+  'createBlogPost' : ActorMethod<[string, string, string], Result>,
   'getAllBlogPosts' : ActorMethod<[], Array<BlogPost>>,
+  'getAllCategories' : ActorMethod<[], Array<string>>,
   'getBlogPost' : ActorMethod<[bigint], [] | [BlogPost]>,
   'getComments' : ActorMethod<[bigint], Array<Comment>>,
+  'getPostsByCategory' : ActorMethod<[string], Array<BlogPost>>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;
 export declare const init: (args: { IDL: typeof IDL }) => IDL.Type[];

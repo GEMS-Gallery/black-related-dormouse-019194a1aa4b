@@ -17,6 +17,7 @@ type Comment =
  };
 type BlogPost = 
  record {
+   category: text;
    content: text;
    createdAt: int;
    id: nat;
@@ -25,8 +26,10 @@ type BlogPost =
  };
 service : {
   addComment: (nat, text) -> (Result_1);
-  createBlogPost: (text, text) -> (Result);
+  createBlogPost: (text, text, text) -> (Result);
   getAllBlogPosts: () -> (vec BlogPost) query;
+  getAllCategories: () -> (vec text) query;
   getBlogPost: (nat) -> (opt BlogPost) query;
   getComments: (nat) -> (vec Comment) query;
+  getPostsByCategory: (text) -> (vec BlogPost) query;
 }

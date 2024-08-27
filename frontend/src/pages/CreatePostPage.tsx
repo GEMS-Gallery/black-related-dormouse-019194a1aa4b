@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography, Paper, Box, TextField, Button } from '@mui/material';
+import { Typography, Paper, Box, TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { backend } from 'declarations/backend';
 
 interface PostFormData {
   title: string;
   content: string;
+  category: string;
 }
 
 const CreatePostPage: React.FC = () => {
   const { control, handleSubmit } = useForm<PostFormData>();
   const navigate = useNavigate();
+  const [categories, setCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const result = await backend.getAllCategories();
+        setCategories(result);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const onSubmit = async (data: PostFormData) => {
     try {
-      const result = await backend.createBlogPost(data.title, data.content);
+      const result = await backend.createBlogPost(data.title, data.content, data.category);
       if ('ok' in result) {
         const newPost = result.ok;
         navigate(`/post/${newPost.id.toString()}`);
@@ -49,6 +63,25 @@ const CreatePostPage: React.FC = () => {
                 helperText={error?.message}
                 sx={{ mb: 2 }}
               />
+            )}
+          />
+          <Controller
+            name="category"
+            control={control}
+            defaultValue=""
+            rules={{ required: 'Category is required' }}
+            render={({ field, fieldState: { error } }) => (
+              <FormControl fullWidth error={!!error} sx={{ mb: 2 }}>
+                <InputLabel>Category</InputLabel>
+                <Select {...field} label="Category">
+                  {categories.map((category) => (
+                    <MenuItem key={category} value={category}>
+                      {category}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {error && <Typography color="error">{error.message}</Typography>}
+              </FormControl>
             )}
           />
           <Controller
