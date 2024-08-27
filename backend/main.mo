@@ -30,18 +30,19 @@ actor {
   stable var blogPosts: [(Nat, BlogPost)] = [];
   stable var comments: [(Nat, Comment)] = [];
 
-  public func createBlogPost(title: Text, content: Text): async Result.Result<Nat, Text> {
+  public func createBlogPost(title: Text, content: Text): async Result.Result<BlogPost, Text> {
     let id = nextPostId;
+    let timestamp = Time.now();
     let post: BlogPost = {
       id;
       title;
       content;
-      createdAt = Time.now();
+      createdAt = timestamp;
       updatedAt = null;
     };
     blogPosts := Array.append(blogPosts, [(id, post)]);
     nextPostId += 1;
-    #ok(id)
+    #ok(post)
   };
 
   public query func getBlogPost(id: Nat): async ?BlogPost {
@@ -55,20 +56,21 @@ actor {
     Array.map(blogPosts, func(entry: (Nat, BlogPost)) : BlogPost { entry.1 })
   };
 
-  public func addComment(postId: Nat, content: Text): async Result.Result<Nat, Text> {
+  public func addComment(postId: Nat, content: Text): async Result.Result<Comment, Text> {
     switch (Array.find(blogPosts, func(entry: (Nat, BlogPost)) : Bool { entry.0 == postId })) {
       case null { #err("Blog post not found") };
       case (?_) {
         let id = nextCommentId;
+        let timestamp = Time.now();
         let comment: Comment = {
           id;
           postId;
           content;
-          createdAt = Time.now();
+          createdAt = timestamp;
         };
         comments := Array.append(comments, [(id, comment)]);
         nextCommentId += 1;
-        #ok(id)
+        #ok(comment)
       };
     }
   };

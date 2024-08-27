@@ -1,7 +1,12 @@
+type Result_1 = 
+ variant {
+   err: text;
+   ok: Comment;
+ };
 type Result = 
  variant {
    err: text;
-   ok: nat;
+   ok: BlogPost;
  };
 type Comment = 
  record {
@@ -19,7 +24,7 @@ type BlogPost =
    updatedAt: opt int;
  };
 service : {
-  addComment: (nat, text) -> (Result);
+  addComment: (nat, text) -> (Result_1);
   createBlogPost: (text, text) -> (Result);
   getAllBlogPosts: () -> (vec BlogPost) query;
   getBlogPost: (nat) -> (opt BlogPost) query;

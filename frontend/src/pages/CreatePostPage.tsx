@@ -17,7 +17,8 @@ const CreatePostPage: React.FC = () => {
     try {
       const result = await backend.createBlogPost(data.title, data.content);
       if ('ok' in result) {
-        navigate(`/post/${result.ok.toString()}`);
+        const newPost = result.ok;
+        navigate(`/post/${newPost.id.toString()}`);
       } else {
         console.error('Error creating blog post:', result.err);
       }

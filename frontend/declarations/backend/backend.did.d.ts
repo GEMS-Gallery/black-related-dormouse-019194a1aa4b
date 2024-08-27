@@ -15,10 +15,12 @@ export interface Comment {
   'createdAt' : bigint,
   'postId' : bigint,
 }
-export type Result = { 'ok' : bigint } |
+export type Result = { 'ok' : BlogPost } |
+  { 'err' : string };
+export type Result_1 = { 'ok' : Comment } |
   { 'err' : string };
 export interface _SERVICE {
-  'addComment' : ActorMethod<[bigint, string], Result>,
+  'addComment' : ActorMethod<[bigint, string], Result_1>,
   'createBlogPost' : ActorMethod<[string, string], Result>,
   'getAllBlogPosts' : ActorMethod<[], Array<BlogPost>>,
   'getBlogPost' : ActorMethod<[bigint], [] | [BlogPost]>,

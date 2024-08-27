@@ -1,4 +1,8 @@
-export const formatDate = (timestamp: bigint | number) => {
+export const formatDate = (timestamp: bigint | number | undefined | null) => {
+  if (timestamp === undefined || timestamp === null) {
+    return 'Date unavailable';
+  }
+
   try {
     const date = new Date(typeof timestamp === 'bigint' ? Number(timestamp) / 1000000 : timestamp);
     return date.toLocaleDateString('en-US', {
