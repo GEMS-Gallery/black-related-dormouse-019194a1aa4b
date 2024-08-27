@@ -1,0 +1,28 @@
+type Time = int;
+type Result = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type Comment = 
+ record {
+   content: text;
+   createdAt: Time;
+   id: nat;
+   postId: nat;
+ };
+type BlogPost = 
+ record {
+   content: text;
+   createdAt: Time;
+   id: nat;
+   title: text;
+   updatedAt: opt Time;
+ };
+service : {
+  addComment: (nat, text) -> (Result);
+  createBlogPost: (text, text) -> (Result);
+  getAllBlogPosts: () -> (vec BlogPost) query;
+  getBlogPost: (nat) -> (opt BlogPost) query;
+  getComments: (nat) -> (vec Comment) query;
+}
