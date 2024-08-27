@@ -39,8 +39,8 @@ const HomePage: React.FC = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: 'text.secondary',
-                  fontSize: '0.875rem',
+                  color: '#666',
+                  fontSize: '0.8rem',
                   fontStyle: 'italic',
                   mb: 1
                 }}

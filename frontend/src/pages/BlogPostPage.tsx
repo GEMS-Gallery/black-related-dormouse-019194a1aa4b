@@ -78,8 +78,8 @@ const BlogPostPage: React.FC = () => {
         <Typography
           variant="body2"
           sx={{
-            color: 'text.secondary',
-            fontSize: '0.875rem',
+            color: '#666',
+            fontSize: '0.8rem',
             fontStyle: 'italic',
             mb: 1
           }}
@@ -101,8 +101,8 @@ const BlogPostPage: React.FC = () => {
           <Typography
             variant="caption"
             sx={{
-              color: 'text.secondary',
-              fontSize: '0.75rem',
+              color: '#666',
+              fontSize: '0.7rem',
               fontStyle: 'italic',
               mt: 1,
               display: 'block'
